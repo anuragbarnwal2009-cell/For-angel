@@ -12,6 +12,7 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
+            background-color: #1a1a1a; /* Fixes the white blank screen while loading */
         }
 
         /* Beautiful Background */
@@ -21,11 +22,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* You can change this image link to any URL you like */
             background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=2576&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
-            filter: brightness(0.6); /* Darkens image so text pops */
+            filter: brightness(0.5); 
             z-index: -1;
         }
 
@@ -38,6 +38,7 @@
             text-align: center;
             color: white;
             padding: 20px;
+            cursor: pointer; /* Tells her she can tap here */
         }
 
         h1 {
@@ -51,13 +52,16 @@
             font-size: 1.2rem;
             line-height: 1.6;
             max-width: 600px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        .highlight {
-            font-weight: bold;
-            color: #ffcccc; /* Light pink for emphasis */
+        .tap-hint {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            margin-top: 10px;
         }
 
         .signature {
@@ -67,11 +71,38 @@
             font-style: italic;
         }
 
-        /* Audio Player Styling */
-        audio {
-            margin-top: 20px;
-            outline: none;
-            border-radius: 30px;
-        }
+        /* Hidden Audio */
+        audio { display: none; }
 
-        /*
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+
+    <div class="background"></div>
+
+    <div class="container">
+        <h1>Im so sorry Angel</h1>
+        <p>Anurag don't mean that.<br>I'm really sorry.</p>
+        <p class="tap-hint">(Tap anywhere to listen)</p>
+        
+        <div class="signature">- Anurag</div>
+
+        <audio id="apologyVoice">
+            <source src="voice.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("apologyVoice");
+            audio.play();
+            // Optional: Hide the "tap to listen" hint after clicking
+            document.querySelector('.tap-hint').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
