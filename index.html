@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Angel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap');
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Beautiful Background */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* You can change this image link to any URL you like */
+            background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=2576&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6); /* Darkens image so text pops */
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #ffcccc; /* Light pink for emphasis */
+        }
+
+        .signature {
+            font-size: 1rem;
+            margin-top: 20px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* Audio Player Styling */
+        audio {
+            margin-top: 20px;
+            outline: none;
+            border-radius: 30px;
+        }
+
+        /*
