@@ -12,10 +12,9 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
-            background-color: #1a1a1a; /* Fixes the white blank screen while loading */
+            background-color: #0d0d0d;
         }
 
-        /* Beautiful Background */
         .background {
             position: absolute;
             top: 0;
@@ -25,12 +24,41 @@
             background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=2576&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
-            filter: brightness(0.5); 
+            filter: brightness(0.4);
             z-index: -1;
         }
 
-        .container {
+        /* Initial Landing Screen */
+        #landing-screen {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: #0d0d0d;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+            transition: opacity 1s ease;
+        }
+
+        .open-btn {
+            padding: 15px 40px;
+            background: none;
+            border: 1px solid #c4a484;
+            color: #c4a484;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .open-btn:active { background: #c4a484; color: #0d0d0d; }
+
+        /* Final Content Screen */
+        .container {
+            display: none; /* Hidden at first */
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -38,58 +66,28 @@
             text-align: center;
             color: white;
             padding: 20px;
-            cursor: pointer; /* Tells her she can tap here */
+            opacity: 0;
+            transition: opacity 2s ease;
         }
 
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; line-height: 1.6; max-width: 600px; opacity: 0.9; }
+        .signature { font-size: 1rem; margin-top: 20px; opacity: 0.7; font-style: italic; }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .tap-hint {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.6;
-            margin-top: 10px;
-        }
-
-        .signature {
-            font-size: 1rem;
-            margin-top: 20px;
-            opacity: 0.8;
-            font-style: italic;
-        }
-
-        /* Hidden Audio */
-        audio { display: none; }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            p { font-size: 1rem; }
-        }
+        @media (max-width: 600px) { h1 { font-size: 2.8rem; } }
     </style>
 </head>
-<body onclick="playAudio()">
+<body>
+
+    <div id="landing-screen">
+        <button class="open-btn" onclick="revealPage()">Open</button>
+    </div>
 
     <div class="background"></div>
 
-    <div class="container">
+    <div class="container" id="main-content">
         <h1>Im so sorry Angel</h1>
         <p>Anurag don't mean that.<br>I'm really sorry.</p>
-        <p>Apne bestfriend se aise hi gussa rahogi? use maaf nhi karogi?.</p>
-        <p class="tap-hint">(Tap anywhere to listen)</p>
-        
         <div class="signature">- Anurag</div>
 
         <audio id="apologyVoice">
@@ -98,11 +96,22 @@
     </div>
 
     <script>
-        function playAudio() {
+        function revealPage() {
+            // Play Audio
             var audio = document.getElementById("apologyVoice");
             audio.play();
-            // Optional: Hide the "tap to listen" hint after clicking
-            document.querySelector('.tap-hint').style.display = 'none';
+
+            // Hide Landing Screen
+            var landing = document.getElementById("landing-screen");
+            landing.style.opacity = "0";
+            
+            setTimeout(() => {
+                landing.style.display = "none";
+                // Show Main Content
+                var content = document.getElementById("main-content");
+                content.style.display = "flex";
+                setTimeout(() => { content.style.opacity = "1"; }, 50);
+            }, 1000);
         }
     </script>
 </body>
