@@ -5,77 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Angel</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500&display=swap');
-
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-            background-color: #0d0d0d;
-        }
-
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=2576&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4);
-            z-index: -1;
-        }
-
-        /* Initial Landing Screen */
-        #landing-screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background-color: #0d0d0d;
-            position: absolute;
-            width: 100%;
-            z-index: 10;
-            transition: opacity 1s ease;
-        }
-
-        .open-btn {
-            padding: 15px 40px;
-            background: none;
-            border: 1px solid #c4a484;
-            color: #c4a484;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .open-btn:active { background: #c4a484; color: #0d0d0d; }
-
-        /* Final Content Screen */
-        .container {
-            display: none; /* Hidden at first */
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-            color: white;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 2s ease;
-        }
-
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin-bottom: 10px; }
-        p { font-size: 1.2rem; line-height: 1.6; max-width: 600px; opacity: 0.9; }
-        .signature { font-size: 1rem; margin-top: 20px; opacity: 0.7; font-style: italic; }
-
-        @media (max-width: 600px) { h1 { font-size: 2.8rem; } }
+        body { background-color: #0d0d0d; color: white; font-family: 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        #landing-screen { text-align: center; transition: opacity 1s; }
+        .open-btn { padding: 15px 40px; font-size: 1.5rem; background: #ff7675; border: none; border-radius: 50px; color: white; cursor: pointer; box-shadow: 0 0 20px rgba(255, 118, 117, 0.4); }
+        
+        #main-content { display: none; flex-direction: column; align-items: center; text-align: center; padding: 20px; opacity: 0; transition: opacity 2s ease; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff7675; }
+        p { font-size: 1.1rem; line-height: 1.6; max-width: 500px; opacity: 0.9; }
+        
+        #egg-section { margin-top: 20px; display: none; }
+        #egg { font-size: 80px; cursor: pointer; user-select: none; transition: transform 0.1s; }
+        #counter { color: #ff7675; font-weight: bold; margin-top: 10px; }
+        
+        #final-surprise { display: none; animation: fadeIn 1.5s; }
+        #final-surprise img { max-width: 80%; border-radius: 20px; border: 4px solid white; margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .shake { animation: shake 0.2s; }
+        @keyframes shake { 0% { transform: rotate(0); } 25% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } 100% { transform: rotate(0); } }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -83,45 +32,72 @@
         <button class="open-btn" onclick="revealPage()">Open</button>
     </div>
 
-    <div class="background"></div>
-
-    <div class="container" id="main-content">
+    <div id="main-content">
         <h1>Im so sorry Angel</h1>
         <p>Anurag don't mean that.<br>I'm really sorry.</p>
-        <p>Apne bestfriend se aise hi muh phula ke baithe rahogi?...Use maaf nhi karogi?</p>
-        <p>maaf krde pleaseeeeeeeeeeeeee 👉👈</p>
-        <div class="signature">- Anurag</div>
+        <p>Apne bestfriend se aise hi muh phula ke baithe rahogi?... Use maaf nhi krogi?</p>
+        <p>maaf krde pleaseeeeeeeeeeeeee 👍👈</p>
+        <div style="margin-top: 10px; opacity: 0.7;">- Anurag</div>
 
         <audio id="apologyVoice">
             <source src="voice.mp3" type="audio/mpeg">
-              <audio id="apologyVoice">
-          <source src="voice.mp3" type="audio/mpeg">
-      </audio>
+        </audio>
 
-      <br><br>
-      <a href="photo.html" style="display: inline-block; padding: 12px 25px; background-color: #ff7675; color: white; border-radius: 30px; text-decoration: none; font-weight: bold; font-family: sans-serif;">
-          Click for a surprise 🎁
-      </a>
-      </div> ```
+        <div id="trigger-wrapper" style="margin-top: 25px;">
+            <button onclick="showEgg()" style="padding: 12px 25px; background: #ff7675; color: white; border: none; border-radius: 30px; cursor: pointer; font-weight: bold;">
+                Click for a surprise 🎁
+            </button>
+        </div>
+
+        <div id="egg-section">
+            <div id="egg" onclick="handleEggTap()">🥚</div>
+            <p id="counter">Taps left: <span id="clicks">50</span></p>
+            
+            <div id="final-surprise">
+                <img src="myphoto.jpg" alt="Sorry Photo">
+                <h2 style="color: #ff7675;">I'm truly sorry.</h2>
+            </div>
+        </div>
+    </div>
 
     <script>
         function revealPage() {
-            // Play Audio
-            var audio = document.getElementById("apologyVoice");
-            audio.play();
-
-            // Hide Landing Screen
-            var landing = document.getElementById("landing-screen");
-            landing.style.opacity = "0";
+            document.getElementById('apologyVoice').play();
+            const landing = document.getElementById('landing-screen');
+            const main = document.getElementById('main-content');
             
+            landing.style.opacity = "0";
             setTimeout(() => {
                 landing.style.display = "none";
-                // Show Main Content
-                var content = document.getElementById("main-content");
-                content.style.display = "flex";
-                setTimeout(() => { content.style.opacity = "1"; }, 50);
+                main.style.display = "flex";
+                setTimeout(() => { main.style.opacity = "1"; }, 50);
             }, 1000);
+        }
+
+        function showEgg() {
+            document.getElementById('trigger-wrapper').style.display = 'none';
+            document.getElementById('egg-section').style.display = 'block';
+        }
+
+        let tapCount = 50;
+        function handleEggTap() {
+            tapCount--;
+            document.getElementById('clicks').innerText = tapCount;
+            
+            const egg = document.getElementById('egg');
+            egg.classList.add('shake');
+            setTimeout(() => egg.classList.remove('shake'), 200);
+
+            if (tapCount === 25) egg.innerText = "🐣";
+            if (tapCount === 10) egg.innerText = "🐥";
+            
+            if (tapCount <= 0) {
+                egg.style.display = 'none';
+                document.getElementById('counter').style.display = 'none';
+                document.getElementById('final-surprise').style.display = 'block';
+            }
         }
     </script>
 </body>
 </html>
+
